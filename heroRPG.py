@@ -6,11 +6,48 @@
 # 2. do nothing - in which case the goblin will attack him anyway
 # 3. flee
 
+hero_health = 10
+hero_power = 5
+goblin_health = 6
+goblin_power = 2
+
+class Hero:
+    def __init__(self, name):
+        self.name = name
+        self.hero_health = 10
+        self.hero_power = 5
+    def attack(self):
+        global goblin_health
+        goblin_health -= hero_power
+        print("You do {} damage to the goblin.".format(hero_power))
+        if goblin_health <= 0:
+            print("The goblin is dead.")
+
+
+class Goblin:
+    def __init__(self, name):
+        self.name = name
+        self.goblin_health = 6
+        self.goblin_power = 2
+        
+    def attack(self):
+        global hero_health
+        hero_health -= goblin_power
+        print("The goblin does {} damage to you.".format(goblin_power))
+        if hero_health <= 0:
+            print("You are dead.")
+
+
+
+
+
+
+
 def main():
-    hero_health = 10
-    hero_power = 5
-    goblin_health = 6
-    goblin_power = 2
+  
+  
+
+
 
     while goblin_health > 0 and hero_health > 0:
         print("You have {} health and {} power.".format(hero_health, hero_power))
@@ -25,10 +62,7 @@ def main():
         raw_input = input()
         if raw_input == "1":
             # Hero attacks goblin
-            goblin_health -= hero_power
-            print("You do {} damage to the goblin.".format(hero_power))
-            if goblin_health <= 0:
-                print("The goblin is dead.")
+            Hero.attack(Goblin)
         elif raw_input == "2":
             pass
         elif raw_input == "3":
@@ -39,10 +73,6 @@ def main():
 
         if goblin_health > 0:
             # Goblin attacks hero
-            hero_health -= goblin_power
-            print("The goblin does {} damage to you.".format(goblin_power))
-            if hero_health <= 0:
-                print("You are dead.")
-
+            Goblin.attack(Hero)
 
 main()
