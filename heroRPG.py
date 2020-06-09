@@ -30,22 +30,22 @@ class Character:
             return True
         else:
             return False
+    def print_status(self):
+        if self.name == "hero":
+            print(f"You have {self.health} health and {self.power} power")
+        if self.name == "goblin":
+            print(f"The goblin has {self.health} health and {self.power} power")
 
 
 class Hero(Character):
     def __init__(self, name = "hero", health = 10, power = 5):
         super().__init__(name = name, health = health, power = power)
-    def print_status(self):
-        print(f"You have {self.health} health and {self.power} power")
+    
 
 
 class Goblin(Character):
     def __init__(self, name = "goblin", health = 6, power = 2):
         super().__init__(name = name, health = health, power = power)
-        
-    def print_status(self):
-        if self.health > 0:
-            print(f"The goblin has {self.health} health and {self.power} power")
 
 
 
